@@ -1,0 +1,24 @@
+{
+  "name": "aroymai",
+  "version": "1.0.0",
+  "description": "food survey web application food survey web application in Software Development Practice II subjects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sataapon48/Aroymai_.git"
+  },
+  "author": "sataapon, padungsak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sataapon48/Aroymai_/issues"
+  },
+  "homepage": "https://github.com/sataapon48/Aroymai_#readme",
+  "dependencies": {
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "sqlite3": "^4.0.0"
+  }
+}
