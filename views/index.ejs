@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Aroymai Food Survey</title>
+  </head>
+  <body>
+    <h1>Aroymai Food Survey</h1>
+    <form action="/fill" method="POST">
+      <table border="1">
+        <tr>
+          <th>Foods</th>
+          <td><input type="checkbox" name="F_Gangcurry" value="GangCurry">Gangcurry</td>
+          <td><input type="checkbox" name="F_Gangsom" value="GangSom">Gangsom</td>
+        </tr>
+        <tr>
+          <th>Drinks</th>
+          <td><input type="checkbox" name="D_Keghuay" value="Keghuay">Keghuay</td>
+          <td><input type="checkbox" name="D_Namoi" value="Namoi">Namoi</td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="Agree"></td>
+          <td><input type="submit" value="Reviews" formaction="/review"></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+<html>
