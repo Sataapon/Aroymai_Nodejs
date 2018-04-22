@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('home');
 });
 
 app.post('/fill', function(req, res){
@@ -30,12 +30,10 @@ app.post('/fill', function(req, res){
 
 app.post('/add', function(req, res){
   res.send("add page get post request");
-  console.log(req.body);
 });
 
 app.post('/review', function(req, res){
   res.send("review page get post request");
-  console.log(req.body);
 });
 
 app.listen(3000);

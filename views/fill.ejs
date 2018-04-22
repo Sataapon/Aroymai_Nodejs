@@ -11,8 +11,8 @@
           <% for (var key in foods){ %>
             <td>
               <center><%= foods[key] %></center>
-              <textarea name="<%= foods[key]+"_Comment" %>" rows="8" cols="30" placeholder="Enter comment"></textarea><br>
-              Enter score: <input type="number" name="<%= foods[key]+"_Score" %>" min="1" max="5"> 
+              <textarea name="<%= foods[key]+"_Comment" %>" rows="8" cols="30" placeholder="Enter comment" id="<%= "id_"+foods[key]+"_Comment" %>"></textarea><br>
+              Enter score: <input type="number" name="<%= foods[key]+"_Score" %>" min="1" max="5" id="<%= "id_"+foods[key]+"_Score" %>"> 
             </td>
           <% } %>
         </tr>
@@ -21,13 +21,13 @@
           <% for (var key in drinks){ %>
             <td>
               <center><%= drinks[key] %></center>
-              <textarea name="<%= drinks[key]+"_Comment" %>" rows="8" cols="30" placholder="Enter comment"></textarea><br>
-              Enter score: <input type="number" name="<%= drinks[key]+"_Score" %>" min="1" max="5">
+              <textarea name="<%= drinks[key]+"_Comment" %>" rows="8" cols="30" placeholder="Enter comment" id="<%= "id_"+drinks[key]+"_Comment" %>"></textarea><br>
+              Enter score: <input type="number" name="<%= drinks[key]+"_Score" %>" min="1" max="5" id="<%= "id_"+drinks[key]+"_Score" %>">
             </td>
           <% } %>
         </tr>
         <tr>
-          <td><input type="submit" value="Send"></td>
+          <td><input type="submit" value="Send" id="id_Send"></td>
         </tr>
       </table>
   </body>
