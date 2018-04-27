@@ -4,7 +4,7 @@
   "description": "food survey web application food survey web application in Software Development Practice II subjects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha || true"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,14 @@
   "homepage": "https://github.com/sataapon48/Aroymai_#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "ejs": "^2.5.8",
     "express": "^4.16.3",
+    "mocha": "^5.1.1",
+    "really-need": "^1.9.2",
     "sequelize": "^4.37.6",
-    "sqlite3": "^4.0.0"
+    "sqlite3": "^4.0.0",
+    "supertest": "^3.0.0"
   }
 }

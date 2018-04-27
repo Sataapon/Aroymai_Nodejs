@@ -1,4 +1,4 @@
-var express = require('express')
+var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res){
+app.get('/', function (req, res){
   res.render('home');
 });
 
@@ -33,7 +33,16 @@ app.post('/add', function(req, res){
 });
 
 app.post('/review', function(req, res){
-  res.send("review page get post request");
+  res.send(req.body);
 });
 
-app.listen(3000);
+app.get('*', function(req, res){
+  res.status(404).send('Sorry, this is an invalid URL.');
+});
+
+var server = app.listen(3000, function () {
+  var port = server.address().port;
+  console.log('Example app listening at port %s', port);
+});
+
+module.exports = app;
