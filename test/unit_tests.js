@@ -50,7 +50,7 @@ describe('Unit testing', function () {
   describe('UndefindPage', function () {
     it('responds to /undefined', function(done) {
       chai.request(app)
-      .post('/undefined')
+      .get('/undefined')
       .end(function(err, res) {
         expect(res).to.have.status(404);
         done();
