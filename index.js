@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+app.use(express.static('public'))
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -34,6 +35,10 @@ app.post('/add', function(req, res){
 
 app.post('/review', function(req, res){
   res.send(req.body);
+});
+
+app.get('/about', function(req, res){
+  res.render('about');
 });
 
 app.get('*', function(req, res){
