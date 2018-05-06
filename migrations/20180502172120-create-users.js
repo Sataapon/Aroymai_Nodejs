@@ -4,8 +4,6 @@ module.exports = {
     return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
         type: Sequelize.INTEGER
       },
       Comment: {
@@ -21,6 +19,9 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      MenuId:{
+        type: Sequelize.INTEGER
       }
     });
   },

@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+const Menus = require('./models').Menus;
+const Users = require('./models').Users;
+
+
 
 app.use(express.static('public'))
 app.use(bodyParser.json()); // support json encoded bodies
