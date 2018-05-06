@@ -13,7 +13,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res){
-  res.render('home');
+  Menus.findAll({
+    include: [Users]
+  }).then(menu => {
+    res.render('home', {Menu:menu});
+  });
 });
 
 app.post('/fill', function(req, res){
