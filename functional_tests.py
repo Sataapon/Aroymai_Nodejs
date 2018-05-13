@@ -13,7 +13,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_poll_vote_it_and_see_result(self):
         # While Pun eat "Gang curry" and "Keghuay" at new restaurant
         # She see sign Website about food survey
-        # When She finish eat food, She go to check out its homepage 
+        # When She finish eat food, She go to check out its homepage
         self.browser.get('http://localhost:3000')
 
         # She see Aroymai in title and header
@@ -52,7 +52,7 @@ class NewVisitorTest(unittest.TestCase):
         scorefood = self.browser.find_element_by_id('id_Gangcurry_Score')
         scorefood.send_keys('5')
 
-        # She type "Sweet too much" in text box and fill "4" at vote button of "Keghuay" 
+        # She type "Sweet too much" in text box and fill "4" at vote button of "Keghuay"
         commentdrinks = self.browser.find_element_by_id('id_Keghuay_Comment')
         self.assertEqual(
             commentdrinks.get_attribute('placeholder'),
@@ -66,7 +66,7 @@ class NewVisitorTest(unittest.TestCase):
         send = self.browser.find_element_by_id('id_Send')
         send.click()
         time.sleep(1)
-        
+
         # Now the new page appear
         # She see "Gangcurry" with text "You vote: 5 points, comment: Very delicious"
         table_result = self.browser.find_element_by_tag_name('table').text
@@ -77,7 +77,7 @@ class NewVisitorTest(unittest.TestCase):
         # She see "Keghuay" with text "You vote: 4 points, comment: Sweet too much"
         self.assertIn('Keghuay', table_result)
         self.assertIn('Your vote: 4 points', table_result)
-        self.assertIn('Your comment: Sweet too much', table_result) 
+        self.assertIn('Your comment: Sweet too much', table_result)
 
         # Satisfied, she paid and walked out of the restaurant
         self.fail('Finish the test!')

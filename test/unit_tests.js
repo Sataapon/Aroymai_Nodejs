@@ -47,6 +47,17 @@ describe('Unit testing', function () {
     });
   });
 
+  describe('AboutPage', function () {
+    it('responds to /about', function(done) {
+      chai.request(app)
+      .get('/about')
+      .end(function(err, res) {
+        expect(res).to.have.status(200);
+        done();
+      });
+    });
+  });
+
   describe('UndefindPage', function () {
     it('responds to /undefined', function(done) {
       chai.request(app)

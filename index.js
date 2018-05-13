@@ -1,23 +1,15 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-const Menus = require('./models').Menus;
-const Users = require('./models').Users;
 
-
-
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res){
-  Menus.findAll({
-    include: [Users]
-  }).then(menu => {
-    res.render('home', {Menu:menu});
-  });
+  res.render('home');
 });
 
 app.post('/fill', function(req, res){
@@ -46,7 +38,7 @@ app.post('/review', function(req, res){
 });
 
 app.get('/about', function(req, res){
-  res.render('about');
+  res.sendfile("public/htmls/about.html");
 });
 
 app.get('*', function(req, res){
