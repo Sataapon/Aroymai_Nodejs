@@ -21,16 +21,14 @@ var CommentScore = sequelize.define('CommentScore', {
 Menu.hasMany(CommentScore);
 User.hasMany(CommentScore);
 
-var menus = [{name: 'Gangcurry', Type: 'Food'},
-             {name: 'Gangsom', Type: 'Food'},
-             {name: 'Kaopud', Type: 'Food'},
-             {name: 'Keghuay', Type: 'Drink'},
-             {name: 'Namoi', Type: 'Drink'},
-             {name: 'Namsom', Type: 'Drink'}
-            ];
+
+var commentscores = [{comment: 'comment1', score: 'score1', MenuId: 1},
+                     {comment: 'comment2', score: 'score2', MenuId: 1},
+                    {comment: 'comment3', score: 'score3', MenuId: 1}
+                    ];
 
 sequelize.sync()
-  .then(() => Menu.bulkCreate(menus))
-    .then(menus => {
-      console.log("Create menu as number ", menus.length);
+  .then(() => CommentScore.bulkCreate(commentscores))
+    .then(commentscores => {
+      console.log("Create user of Gangcurry as number ", commentscores.length);
   });
