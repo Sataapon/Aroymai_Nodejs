@@ -10,8 +10,27 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def find_and_click_item(self, id):
+        select_item = self.browser.find_element_by_id(id)
+        select_item.click()
+
+    def find_and_send_key(self, id, key):
+        select_item = self.browser.find_element_by_id(id)
+        select_item.send_keys(key)
+
+    def check_items_in_and_notIn_table(self, item1, item2, item3, item4, table):
+        self.assertIn(item1, table)
+        self.assertNotIn(item2, table)
+        self.assertIn(item3, table)
+        self.assertNotIn(item4, table)
+
+    def check_review_in_table(self, comment, score, name, table):
+        self.assertIn(comment, table)
+        self.assertIn(score, table)
+        self.assertIn(name, table)
+
     def test_can_start_a_poll_vote_it_and_see_result(self):
-        # While Pun eat "Gang curry" and "Keghuay" at new restaurant
+        # While Pun eat "Gangcurry" and "Keghuay" at new restaurant
         # She see sign Website about food survey
         # When She finish eat food, She go to check out its homepage
         self.browser.get('http://localhost:3000')
@@ -22,62 +41,54 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('Aroymai', header_text)
 
         # She select "Gangcurry"
-        select_food = self.browser.find_element_by_id('id_Gangcurry')
-        select_food.click()
+        self.find_and_click_item('id_Gangcurry')
 
         # and she select "Keghuay"
-        select_drink = self.browser.find_element_by_id('id_Keghuay')
-        select_drink.click()
+        self.find_and_click_item('id_Keghuay')
 
-        # When she click Agree button, the page reload,
-        vote = self.browser.find_element_by_id('id_Agree')
-        vote.click()
+        # When she click Vote button, the page reload
+        self.find_and_click_item('id_Vote')
         time.sleep(1)
 
         # Now the new page appear
-        # She see only "Gang curry" and "Keghuay" with vote button and text box
-        table_info = self.browser.find_element_by_tag_name('table').text
-        self.assertIn('Gangcurry', table_info)
-        self.assertNotIn('Gangsom', table_info)
-        self.assertIn('Keghuay', table_info)
-        self.assertNotIn('Namoi', table_info)
+        # She see only "Gangcurry" and "Keghuay"
+        table_fillpage = self.browser.find_element_by_tag_name('table').text
+        self.check_items_in_and_notIn_table('Gangcurry', 'Gangsom', 'Keghuay', 'Namoi', table_fillpage)
 
-        # She type "Very delicious" in text box and fill "5" at vote buttun of "Gangcurry"
-        commentfood = self.browser.find_element_by_id('id_Gangcurry_Comment')
-        self.assertEqual(
-            commentfood.get_attribute('placeholder'),
-            'Enter comment'
-        )
-        commentfood.send_keys('Very delicious')
-        scorefood = self.browser.find_element_by_id('id_Gangcurry_Score')
-        scorefood.send_keys('5')
+        # She type "Very delicious" in comment box and fill "5" at vote box of "Gangcurry"
+        self.find_and_send_key('id_Gangcurry_Comment', 'Very delicious')
+        self.find_and_send_key('id_Gangcurry_Score', 5)
 
-        # She type "Sweet too much" in text box and fill "4" at vote button of "Keghuay"
-        commentdrinks = self.browser.find_element_by_id('id_Keghuay_Comment')
-        self.assertEqual(
-            commentdrinks.get_attribute('placeholder'),
-            'Enter comment'
-        )
-        commentdrinks.send_keys('Sweet too much')
-        scoredrinks = self.browser.find_element_by_id('id_Keghuay_Score')
-        scoredrinks.send_keys('4')
+        # She type "Sweet too much" in text box and fill "4" at vote box of "Keghuay"
+        self.find_and_send_key('id_Keghuay_Comment', 'Sweet too much')
+        self.find_and_send_key('id_Keghuay_Score', 4)
+
+        # She type "Pun" in Name box
+        self.find_and_send_key('id_User', 'Pun')
 
         # When she click Send button, the page reload,
-        send = self.browser.find_element_by_id('id_Send')
-        send.click()
+        self.find_and_click_item('id_Send')
+        time.sleep(1)
+
+        # Now the homepage page appear again
+        # She select "Gangcurry" and "Keghuay" again
+        self.find_and_click_item('id_Gangcurry')
+        self.find_and_click_item('id_Keghuay')
+
+        # And this time she click Review button, the page reload
+        self.find_and_click_item('id_Review')
         time.sleep(1)
 
         # Now the new page appear
-        # She see "Gangcurry" with text "You vote: 5 points, comment: Very delicious"
-        table_result = self.browser.find_element_by_tag_name('table').text
-        self.assertIn('Gangcurry', table_result)
-        self.assertIn('Your vote: 5 points', table_result)
-        self.assertIn('Your comment: Very delicious', table_result)
+        # She see only "Gangcurry" and "Keghuay"
+        table_reviewpage = self.browser.find_element_by_tag_name('table').text
+        self.check_items_in_and_notIn_table('Gangcurry', 'Gangsom', 'Keghuay', 'Namoi', table_reviewpage)
 
-        # She see "Keghuay" with text "You vote: 4 points, comment: Sweet too much"
-        self.assertIn('Keghuay', table_result)
-        self.assertIn('Your vote: 4 points', table_result)
-        self.assertIn('Your comment: Sweet too much', table_result)
+        # She see "Very delicious", "5" and her name "Pun" in "Gangcurry" review
+        self.check_review_in_table('Very delicious', '5', 'Pun', table_reviewpage)
+
+        # She see "Sweet too much", "4" and her name "Pun" in "Keghuay" review
+        self.check_review_in_table('Sweet too much', '4', 'Pun', table_reviewpage)
 
         # Satisfied, she paid and walked out of the restaurant
         self.fail('Finish the test!')
