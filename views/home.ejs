@@ -3,22 +3,24 @@
     <title>Aroymai Food Survey</title>
   </head>
   <body>
-    <h1>Aroymai Food Survey</h1>
-    <form action="/fill" method="POST">
-      <table>
+    <h1>Aroymai Survey HomePage</h1>
+    <form action="/fill" method="GET">
+      <table border="1">
         <tr>
           <th>Foods</th>
-          <td><input type="checkbox" name="F_Gangcurry" value="Gangcurry" id="id_Gangcurry">Gangcurry</td>
-          <td><input type="checkbox" name="F_Gangsom" value="Gangsom">Gangsom</td>
+          <% for (var key in foods){ %>
+          <td><input type="checkbox" name="<%= foods[key]+'_'+key %>" value="<%= key %>" id="<%= 'id_'+key %>"><%= key %></td>
+          <% } %>
         </tr>
         <tr>
           <th>Drinks</th>
-          <td><input type="checkbox" name="D_Keghuay" value="Keghuay" id="id_Keghuay">Keghuay</td>
-          <td><input type="checkbox" name="D_Namoi" value="Namoi">Namoi</td>
+          <% for (var key in drinks){ %>
+          <td><input type="checkbox" name="<%= drinks[key]+'_'+key %>" value="<%= key %>" id="<%= 'id_'+key %>"><%= key %></td>
+          <% } %>
         </tr>
         <tr>
-          <td><input type="submit" value="Agree" id="id_Agree"></td>
-          <td><input type="submit" value="Review" formaction="/review"></td>
+          <td><input type="submit" value="Vote" id="id_Vote"></td>
+          <td><input type="submit" value="Review" id="id_Review" formaction="/review"></td>
         </tr>
       </table>
     </form>

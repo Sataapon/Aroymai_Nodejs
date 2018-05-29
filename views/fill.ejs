@@ -3,32 +3,39 @@
     <title>Aroymai Food Survey</title>
   </head>
   <body>
-    <h1>Aroymai Food Survey</h1>
+    <h1>Aroymai Survey FillPage</h1>
     <form action="/add" method="POST">
-      <table>
+      <table border="1">
         <tr>
           <th>Foods</th>
-          <% for (var key in foods){ %>
-            <td>
-              <center><%= foods[key] %></center>
-              <textarea name="<%= foods[key]+"_Comment" %>" rows="8" cols="30" placeholder="Enter comment" id="<%= "id_"+foods[key]+"_Comment" %>"></textarea><br>
-              Enter score: <input type="number" name="<%= foods[key]+"_Score" %>" min="1" max="5" id="<%= "id_"+foods[key]+"_Score" %>"> 
-            </td>
+           <% for (var i in foods){ %>
+          <td>
+            <center><%= foods[i] %></center>
+            <textarea name="<%= foods[i]+'_comment' %>" rows="8" cols="30" id="<%= 'id_'+foods[i]+'_Comment' %>"  placeholder="Enter comment" required></textarea><br>
+            Enter score: <input type="number" name="<%= foods[i]+'_score' %>" id="<%= 'id_'+foods[i]+'_Score' %>"  min="1" max="5" required>
+          </td>
           <% } %>
         </tr>
         <tr>
           <th>Drinks</th>
-          <% for (var key in drinks){ %>
-            <td>
-              <center><%= drinks[key] %></center>
-              <textarea name="<%= drinks[key]+"_Comment" %>" rows="8" cols="30" placeholder="Enter comment" id="<%= "id_"+drinks[key]+"_Comment" %>"></textarea><br>
-              Enter score: <input type="number" name="<%= drinks[key]+"_Score" %>" min="1" max="5" id="<%= "id_"+drinks[key]+"_Score" %>">
-            </td>
-          <% } %>
+          <% for (var i in drinks){ %>
+         <td>
+           <center><%= drinks[i] %></center>
+           <textarea name="<%= drinks[i]+'_comment' %>" rows="8" cols="30" id="<%= 'id_'+drinks[i]+'_Comment' %>"  placeholder="Enter comment" required></textarea><br>
+           Enter score: <input type="number" name="<%= drinks[i]+'_score' %>" id="<%= 'id_'+drinks[i]+'_Score' %>"  min="1" max="5" required>
+         </td>
+         <% } %>
         </tr>
         <tr>
-          <td><input type="submit" value="Send" id="id_Send"></td>
+          <td></td>
+          <td>
+            <br>
+            Name: <input type="text" name="User" size="5" id="id_User" maxlength="20">
+            <input type="submit" value="Send" id="id_Send">
+          </td>
         </tr>
       </table>
+    </form>
+    <a href="/">Home</a>
   </body>
 </html>
